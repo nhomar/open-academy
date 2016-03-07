@@ -7,6 +7,15 @@ class Course(models.Model):
 
     name = fields.Char()
     description = fields.Text()
+
+class Session(models.Model):
+    _name = 'session'
+
+    name = fields.Char()
+    start_date = fields.Date()
+    duration = fields.Float(help="Duration in days")
+    seats = fields.Integer()
+
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #

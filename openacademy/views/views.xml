@@ -72,12 +72,56 @@
     <menuitem name="Configuration" id="academy" parent="academy_root"/>
     <menuitem name="Courses" id="academy_courses" parent="academy"
         action="act_course_tree"/>
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="academy.menu_1_list" parent="academy.menu_1"
-              action="academy.action_window"/>
-    <menuitem name="Server to list" id="academy" parent="academy.menu_2"
-              action="academy.action_server"/>
-    -->
+
+    <record model="ir.ui.view" id="session_list">
+      <field name="name">Session List</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="start_date"/>
+          <field name="duration"/>
+          <field name="seats"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_form">
+      <field name="name">Session Form</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <div class="oe_title">
+                    <label for="name"  class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                </div>
+                <group string="Information">
+                    <field name="start_date"/>
+                    <field name="duration"/>
+                    <field name="seats"/>
+                </group>
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_search">
+      <field name="name">Session search</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="start_date"/>
+        </search>
+      </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_session_tree">
+      <field name="name">Sessions</field>
+      <field name="res_model">session</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Sessions" id="academy_sessions" parent="academy"
+        action="act_session_tree"/>
   </data>
 </openerp>
