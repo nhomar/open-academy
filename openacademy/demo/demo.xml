@@ -1,10 +1,13 @@
 <openerp>
     <data>
-        <!--  -->
-        <!--   <record id="object0" model="academy.academy"> -->
-        <!--     <field name="name">Object 0</field> -->
-        <!--     <field name="value">0</field> -->
-        <!--   </record> -->
+          <record id="course0" model="course">
+            <field name="name">Course Demo 0</field>
+            <field name="description">This is the description of Course 0</field>
+          </record>
+          <record id="course1" model="course">
+            <field name="name">Course Demo 1</field>
+            <field name="description">This is the description of Course 1</field>
+          </record>
         <!--  -->
         <!--   <record id="object1" model="academy.academy"> -->
         <!--     <field name="name">Object 1</field> -->
