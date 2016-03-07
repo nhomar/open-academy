@@ -32,6 +32,18 @@
         </form>
       </field>
     </record>
+
+    <record model="ir.ui.view" id="course_search">
+      <field name="name">Course search</field>
+      <field name="model">course</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="description"/>
+        </search>
+      </field>
+    </record>
+
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="act_course_tree">
       <field name="name">Courses</field>
