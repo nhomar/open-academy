@@ -16,13 +16,11 @@
     -->
 
     <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="academy.action_window">
-      <field name="name">academy window</field>
-      <field name="res_model">academy.academy</field>
+    <record model="ir.actions.act_window" id="act_course_tree">
+      <field name="name">Courses</field>
+      <field name="res_model">course</field>
       <field name="view_mode">tree,form</field>
     </record>
-    -->
 
     <!-- server action to the one above -->
     <!--
@@ -40,14 +38,11 @@
     -->
 
     <!-- Top menu item -->
-    <!--
-    <menuitem name="academy" id="academy.menu_root"/>
-    -->
+    <menuitem name="Academy" id="academy_root"/>
     <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="academy.menu_1" parent="academy.menu_root"/>
-    <menuitem name="Menu 2" id="academy.menu_2" parent="academy.menu_root"/>
-    -->
+    <menuitem name="Configuration" id="academy" parent="academy_root"/>
+    <menuitem name="Courses" id="academy_courses" parent="academy"
+        action="act_course_tree"/>
     <!-- actions -->
     <!--
     <menuitem name="List" id="academy.menu_1_list" parent="academy.menu_1"
