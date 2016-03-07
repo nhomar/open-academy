@@ -13,6 +13,7 @@ class Session(models.Model):
     _name = 'session'
 
     name = fields.Char()
+    instructor = fields.Many2one('res.partner')
     start_date = fields.Date()
     duration = fields.Float(help="Duration in days")
     seats = fields.Integer()
