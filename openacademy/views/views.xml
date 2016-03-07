@@ -7,6 +7,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
+          <field name="responsible"/>
         </tree>
       </field>
     </record>
@@ -24,6 +25,7 @@
                 <notebook>
                     <page string="Description">
                         <group>
+                            <field name="responsible"/>
                             <field name="description"/>
                         </group>
                     </page>
@@ -39,6 +41,7 @@
       <field name="arch" type="xml">
         <search>
           <field name="name"/>
+          <field name="responsible"/>
           <field name="description"/>
         </search>
       </field>

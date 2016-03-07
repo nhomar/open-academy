@@ -7,6 +7,7 @@ class Course(models.Model):
 
     name = fields.Char()
     description = fields.Text()
+    responsible = fields.Many2one('res.users')
 
 class Session(models.Model):
     _name = 'session'
