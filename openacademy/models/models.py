@@ -19,6 +19,7 @@ class Session(models.Model):
     start_date = fields.Date()
     duration = fields.Float(help="Duration in days")
     seats = fields.Integer()
+    attendees = fields.Many2many('res.partner')
 
 #     value = fields.Integer()
 #     value2 = fields.Float(compute="_value_pc", store=True)

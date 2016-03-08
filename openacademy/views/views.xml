@@ -104,12 +104,17 @@
                     <label for="name"  class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
                 </div>
-                <group string="Information">
-                    <field name="course"/>
-                    <field name="instructor"/>
-                    <field name="start_date"/>
-                    <field name="duration"/>
-                    <field name="seats"/>
+                <group>
+                    <group string="Information" cols="3">
+                        <field name="course"/>
+                        <field name="instructor"/>
+                        <field name="start_date"/>
+                        <field name="duration"/>
+                        <field name="seats"/>
+                    </group>
+                    <group string="Attendees" cols="3">
+                        <field name="attendees" nolabel="1"/>
+                    </group>
                 </group>
             </sheet>
         </form>
