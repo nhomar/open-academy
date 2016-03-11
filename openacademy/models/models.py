@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 
 from openerp import models, fields, api
 
@@ -14,9 +15,10 @@ class Session(models.Model):
     _name = 'session'
 
     name = fields.Char()
+    active = fields.Boolean(default=True)
     instructor = fields.Many2one('res.partner')
     course = fields.Many2one('course')
-    start_date = fields.Date()
+    start_date = fields.Date(default=lambda self: fields.datetime.now())
     duration = fields.Float(help="Duration in days")
     seats = fields.Integer()
     attendees = fields.Many2many('res.partner')

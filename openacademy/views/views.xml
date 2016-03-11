@@ -104,6 +104,8 @@
                 <div class="oe_title">
                     <label for="name"  class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
+                    <label for="active"  class="oe_edit_only"/>
+                    <field name="active"/>
                 </div>
                 <group>
                     <group string="Information" cols="3">
