@@ -17,6 +17,12 @@ class Course(models.Model):
         ('name_desc_check', 'CHECK(name <> description)', 'The name and the description must be differents')
     ]
 
+    @api.multi
+    def copy(self, default=None):
+        default = dict(default or {},
+                       name='%s (copy)' % self.name)
+        return super(Course, self).copy(default=default)
+
 class Session(models.Model):
     _name = 'session'
 
