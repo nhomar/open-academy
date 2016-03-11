@@ -34,7 +34,7 @@ class Session(models.Model):
             else:
                 record.percentage_seats_taken = 0.00
 
-    @api.onchange('seats')
+    @api.onchange('seats', 'duration', 'attendees')
     def _onchange_seats(self):
         if self.duration < 0:
             return {'warning': {
