@@ -33,3 +33,24 @@ class Session(models.Model):
                 record.percentage_seats_taken = float(len(record.attendees)) / record.seats * 100.00
             else:
                 record.percentage_seats_taken = 0.00
+
+    @api.onchange('seats')
+    def _onchange_seats(self):
+        if self.duration < 0:
+            return {'warning': {
+                    'title': 'Invalid Duration Value',
+                    'message': 'Duration must be a positive value.'
+                }
+            }
+        if self.seats < 0:
+            return {'warning': {
+                    'title': 'Invalid Seats Value',
+                    'message': 'Seats must be a postive value.'
+                }
+            }
+        if self.percentage_seats_taken > 100.0:
+            return {'warning': {
+                    'title': 'No more attendees',
+                    'message': 'You can not have more attendees than seats availables.'
+                }
+            }
