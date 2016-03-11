@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-import time
 
 from openerp import models, fields, api
+from openerp.exceptions import ValidationError
+
 
 class Course(models.Model):
     _name = 'course'
@@ -10,6 +11,11 @@ class Course(models.Model):
     description = fields.Text()
     responsible = fields.Many2one('res.users')
     sessions = fields.One2many('session', 'course')
+
+    _sql_constraints = [
+        ('name_uniq', 'UNIQUE(name)', 'The name of the course must be unique'),
+        ('name_desc_check', 'CHECK(name <> description)', 'The name and the description must be differents')
+    ]
 
 class Session(models.Model):
     _name = 'session'
@@ -21,7 +27,7 @@ class Session(models.Model):
     start_date = fields.Date(default=lambda self: fields.datetime.now())
     duration = fields.Float(help="Duration in days")
     seats = fields.Integer()
-    attendees = fields.Many2many('res.partner')
+    attendees = fields.Many2many('res.partner', 'session_id', 'partner_id')
     percentage_seats_taken = fields.Float(compute="_compute_perc_seats_taken", store=True)
 
 #     value = fields.Integer()
@@ -54,3 +60,10 @@ class Session(models.Model):
                     'message': 'You can not have more attendees than seats availables.'
                 }
             }
+
+    @api.constrains('instructor', 'attendees')
+    def _check_instructor(self):
+        for record in self:
+            for att in record.attendees:
+                if att == record.instructor:
+                    raise ValidationError("Intructor can not be an attendee, please remove the partner %s from attendees list" % record.instructor.display_name)
