@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 class Course(models.Model):
     _name = 'course'
@@ -20,10 +20,14 @@ class Session(models.Model):
     duration = fields.Float(help="Duration in days")
     seats = fields.Integer()
     attendees = fields.Many2many('res.partner')
+    percentage_seats_taken = fields.Float(compute="_compute_perc_seats_taken")
 
 #     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
 #
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+    @api.multi
+    def _compute_perc_seats_taken(self):
+        for record in self:
+            if record.seats:
+                record.percentage_seats_taken = float(len(record.attendees)) / record.seats * 100.00
+            else:
+                record.percentage_seats_taken = 0.00
