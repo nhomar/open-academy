@@ -1,0 +1,15 @@
+<openerp>
+    <data>
+          <record id="category_teacher_0" model="res.partner.category">
+            <field name="name">Teacher</field>
+          </record>
+          <record id="category_teacher_1" model="res.partner.category">
+            <field name="name">Level 1</field>
+            <field name="parent_id" ref="category_teacher_0"/>
+          </record>
+          <record id="category_teacher_2" model="res.partner.category">
+            <field name="name">Level 2</field>
+            <field name="parent_id" ref="category_teacher_0"/>
+          </record>
+    </data>
+</openerp>
