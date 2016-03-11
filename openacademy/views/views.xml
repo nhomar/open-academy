@@ -107,7 +107,7 @@
                 <group>
                     <group string="Information" cols="3">
                         <field name="course"/>
-                        <field name="instructor"/>
+                        <field name="instructor" domain="['|', ('instructor', '=', True), '|', ('category_id.name', 'ilike', 'Teacher'), ('category_id.parent_id.name', 'ilike', 'Teacher')]"/>
                         <field name="start_date"/>
                         <field name="duration"/>
                         <field name="seats"/>
