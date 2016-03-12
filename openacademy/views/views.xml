@@ -123,6 +123,12 @@
       <field name="model">session</field>
       <field name="arch" type="xml">
         <form>
+            <header>
+                <button name="set_draft" string="Draft" help="Set as draft the session" type="object" states="confirmed,done"/>
+                <button name="set_confirmed" string="Confirm" help="Set as confirmed the session" type="object" states="draft"/>
+                <button name="set_done" string="Done" help="Set as Done the session" type="object" states="confirmed"/>
+                <field name="state" widget="statusbar"/>
+            </header>
             <sheet>
                 <div class="oe_title">
                     <label for="name"  class="oe_edit_only"/>

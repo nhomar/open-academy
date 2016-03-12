@@ -36,6 +36,9 @@ class Session(models.Model):
     attendees = fields.Many2many('res.partner', 'session_id', 'partner_id')
     percentage_seats_taken = fields.Float(compute="_compute_perc_seats_taken", store=True)
     total_seats_taken = fields.Integer(compute="_compute_perc_seats_taken", store=True)
+    state = fields.Selection([('draft', 'Draft'),
+                              ('confirmed', 'Confirmed'),
+                              ('done', 'Done')], default="draft", required=True)
 
 #     value = fields.Integer()
 #
@@ -76,3 +79,18 @@ class Session(models.Model):
             for att in record.attendees:
                 if att == record.instructor:
                     raise ValidationError("Intructor can not be an attendee, please remove the partner %s from attendees list" % record.instructor.display_name)
+
+    @api.multi
+    def set_draft(self):
+        for record in self:
+            record.state = 'draft'
+
+    @api.multi
+    def set_confirmed(self):
+        for record in self:
+            record.state = 'confirmed'
+
+    @api.multi
+    def set_done(self):
+        for record in self:
+            record.state = 'done'
