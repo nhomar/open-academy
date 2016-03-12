@@ -46,6 +46,8 @@
           <field name="name"/>
           <field name="responsible"/>
           <field name="description"/>
+          <filter name="my_courses" string="My Courses" domain="[('responsible', '=', uid)]"/>
+          <filter name="group_by_responsible" string="Responsible" context="{'group_by': 'responsible'}"/>
         </search>
       </field>
     </record>
@@ -55,6 +57,7 @@
       <field name="name">Courses</field>
       <field name="res_model">course</field>
       <field name="view_mode">tree,form</field>
+      <field name="context">{"search_default_my_courses":1}</field>
     </record>
 
     <!-- server action to the one above -->
@@ -79,11 +82,31 @@
     <menuitem name="Courses" id="academy_courses" parent="academy"
         action="act_course_tree"/>
 
+    <record model="ir.ui.view" id="session_graph">
+      <field name="name">Session graph</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+          <graph string="Sessions">
+              <field name="course"/>
+              <field name="total_seats_taken" type="measure"/>
+          </graph>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="session_calendar">
+      <field name="name">Session calendar</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+          <calendar string="Sessions" date_start="start_date" color="instructor">
+              <field name="name"/>
+              <field name="percentage_seats_taken"/>
+          </calendar>
+      </field>
+    </record>
     <record model="ir.ui.view" id="session_list">
       <field name="name">Session List</field>
       <field name="model">session</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree decoration-info="duration&lt;=5" decoration-danger="duration&gt;5">
           <field name="name"/>
           <field name="instructor"/>
           <field name="course"/>
@@ -140,7 +163,7 @@
     <record model="ir.actions.act_window" id="act_session_tree">
       <field name="name">Sessions</field>
       <field name="res_model">session</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,calendar,graph</field>
     </record>
     <menuitem name="Sessions" id="academy_sessions" parent="academy"
         action="act_session_tree"/>
