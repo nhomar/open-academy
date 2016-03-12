@@ -148,6 +148,31 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="session_kanban">
+      <field name="name">Session kanban</field>
+      <field name="model">session</field>
+      <field name="arch" type="xml">
+          <kanban default_group_by="course">
+            <field name="name"/>
+            <field name="course"/>
+            <field name="instructor"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <strong class="oe_partner_heading"><field name="name"/></strong>
+                        <t t-if="record.instructor.raw_value">
+                            <br/>
+                            <field name="instructor"/>
+                        </t>
+                        <t t-if="!record.instructor.raw_value">
+                            <h5>Instructor not Setted</h5>
+                        </t>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+      </field>
+    </record>
     <record model="ir.ui.view" id="session_search">
       <field name="name">Session search</field>
       <field name="model">session</field>
@@ -163,7 +188,7 @@
     <record model="ir.actions.act_window" id="act_session_tree">
       <field name="name">Sessions</field>
       <field name="res_model">session</field>
-      <field name="view_mode">tree,form,calendar,graph</field>
+      <field name="view_mode">tree,form,kanban,calendar,graph</field>
     </record>
     <menuitem name="Sessions" id="academy_sessions" parent="academy"
         action="act_session_tree"/>
