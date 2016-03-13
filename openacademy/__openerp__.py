@@ -29,6 +29,7 @@
         'views/templates.xml',
         'data/data.xml',
         'data/workflow.xml',
+        'wizard/create_attendees_view.xml',
         'security/group.xml',
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
