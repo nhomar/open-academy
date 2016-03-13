@@ -29,6 +29,7 @@
         'views/res_partner_view.xml',
         'views/templates.xml',
         'data/data.xml',
+        'data/workflow.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

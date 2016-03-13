@@ -1,0 +1,67 @@
+<openerp>
+    <data>
+        <record id="wkf_session" model="workflow">
+            <field name="name">WorkFlow Session From Code</field>
+            <field name="osv">session</field>
+        </record>
+        <record id="wkf_session_act_draft" model="workflow.activity">
+            <field name="name">draft</field>
+            <field name="kind">function</field>
+            <field name="flow_start">True</field>
+            <field name="action">set_draft()</field>
+            <field name="wkf_id" ref="openacademy.wkf_session"/>
+        </record>
+        <record id="wkf_session_act_confirmed" model="workflow.activity">
+            <field name="name">confirmed</field>
+            <field name="kind">function</field>
+            <field name="flow_start"></field>
+            <field name="action">set_confirmed()</field>
+            <field name="wkf_id" ref="openacademy.wkf_session"/>
+        </record>
+        <record id="wkf_session_act_done" model="workflow.activity">
+            <field name="name">done</field>
+            <field name="kind">function</field>
+            <field name="flow_start"></field>
+            <field name="action">set_done()</field>
+            <field name="wkf_id" ref="openacademy.wkf_session"/>
+        </record>
+        <!-- Transitions from draft to confirmed
+             -->
+        <record id="wkf_session_tran_draft_confirmed0" model="workflow.transition">
+            <field name="act_from" ref="openacademy.wkf_session_act_draft"/>
+            <field name="act_to" ref="openacademy.wkf_session_act_confirmed"/>
+            <field name="signal">draft_confirmed</field>
+            <field name="condition">True</field>
+        </record>
+        <record id="wkf_session_tran_draft_confirmed1" model="workflow.transition">
+            <field name="act_from" ref="openacademy.wkf_session_act_draft"/>
+            <field name="act_to" ref="openacademy.wkf_session_act_confirmed"/>
+            <field name="signal"></field>
+            <field name="condition">percentage_seats_taken &gt; 50</field>
+        </record>
+        <!-- Transition from confirmed to Done.
+             -->
+        <record id="wkf_session_tran_confirmed_done" model="workflow.transition">
+            <field name="act_from" ref="openacademy.wkf_session_act_confirmed"/>
+            <field name="act_to" ref="openacademy.wkf_session_act_done"/>
+            <field name="signal">confirmed_done</field>
+            <field name="condition">True</field>
+        </record>
+        <!-- Transition from confirmed to draft.
+             -->
+        <record id="wkf_session_tran_confirmed_draft" model="workflow.transition">
+            <field name="act_from" ref="openacademy.wkf_session_act_confirmed"/>
+            <field name="act_to" ref="openacademy.wkf_session_act_draft"/>
+            <field name="signal">confirmed_draft</field>
+            <field name="condition">True</field>
+        </record>
+        <!-- Transition from done to draft.
+             -->
+        <record id="wkf_session_tran_done_draft" model="workflow.transition">
+            <field name="act_from" ref="openacademy.wkf_session_act_done"/>
+            <field name="act_to" ref="openacademy.wkf_session_act_draft"/>
+            <field name="signal">confirmed_draft</field>
+            <field name="condition">True</field>
+        </record>
+    </data>
+</openerp>
