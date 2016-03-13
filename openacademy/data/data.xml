@@ -1,5 +1,9 @@
 <openerp>
     <data>
+          <record id="module_category_openacademy" model="ir.module.category">
+            <field name="name">OpenAcademy</field>
+            <field name="sequence">100</field>
+          </record>
           <record id="category_teacher_0" model="res.partner.category">
             <field name="name">Teacher</field>
           </record>
