@@ -141,6 +141,7 @@
                         <field name="course"/>
                         <field name="instructor" domain="['|', ('instructor', '=', True), '|', ('category_id.name', 'ilike', 'Teacher'), ('category_id.parent_id.name', 'ilike', 'Teacher')]"/>
                         <field name="start_date"/>
+                        <field name="end_date"/>
                         <field name="duration"/>
                         <field name="seats"/>
                         <field name="percentage_seats_taken" widget="progressbar"/>

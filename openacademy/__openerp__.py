@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'report'],
 
     # always loaded
     'data': [
@@ -33,6 +33,7 @@
         'security/group.xml',
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
+        'reports/session_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
