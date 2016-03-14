@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
 
 
@@ -56,20 +56,20 @@ class Session(models.Model):
     def _onchange_seats(self):
         if self.duration < 0:
             return {'warning': {
-                    'title': 'Invalid Duration Value',
-                    'message': 'Duration must be a positive value.'
+                    'title': _('Invalid Duration Value'),
+                    'message': _('Duration must be a positive value.')
                 }
             }
         if self.seats < 0:
             return {'warning': {
-                    'title': 'Invalid Seats Value',
-                    'message': 'Seats must be a postive value.'
+                    'title': _('Invalid Seats Value'),
+                    'message': _('Seats must be a positive value.')
                 }
             }
         if self.percentage_seats_taken > 100.0:
             return {'warning': {
-                    'title': 'No more attendees',
-                    'message': 'You can not have more attendees than seats availables.'
+                    'title': _('No more attendees'),
+                    'message': _('You can not have more attendees than seats availables.')
                 }
             }
 
@@ -78,7 +78,7 @@ class Session(models.Model):
         for record in self:
             for att in record.attendees:
                 if att == record.instructor:
-                    raise ValidationError("Intructor can not be an attendee, please remove the partner %s from attendees list" % record.instructor.display_name)
+                    raise ValidationError(_("Intructor can not be an attendee, please remove the partner %s from attendees list") % record.instructor.display_name)
 
     @api.multi
     def set_draft(self):

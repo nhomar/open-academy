@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-14 02:31+0000\n"
-"PO-Revision-Date: 2016-03-14 02:31+0000\n"
+"POT-Creation-Date: 2016-03-14 02:40+0000\n"
+"PO-Revision-Date: 2016-03-14 02:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,22 +18,22 @@ msgstr ""
 #. module: openacademy
 #: model:ir.ui.menu,name:openacademy.academy_root
 msgid "Academy"
-msgstr "Academia"
+msgstr ""
 
 #. module: openacademy
 #: model:ir.model.fields,field_description:openacademy.field_session_active
 msgid "Active"
-msgstr "Activo"
+msgstr ""
 
 #. module: openacademy
 #: model:ir.ui.view,arch_db:openacademy.create_attendees_form
 msgid "Add"
-msgstr "Agregar"
+msgstr ""
 
 #. module: openacademy
 #: model:ir.ui.menu,name:openacademy.wzd_create_session
 msgid "Add attendees to session"
-msgstr "Agregar asistentes a la sesión"
+msgstr ""
 
 #. module: openacademy
 #: model:ir.model.fields,field_description:openacademy.field_create_attendee_attendee_ids
@@ -44,7 +44,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:openacademy.field_session_attendees
 #: model:ir.ui.view,arch_db:openacademy.session_form
 msgid "Attendees"
-msgstr "Asistentes"
+msgstr ""
 
 #. module: openacademy
 #: model:ir.ui.menu,name:openacademy.academy
@@ -148,6 +148,12 @@ msgstr ""
 #. module: openacademy
 #: model:ir.ui.view,arch_db:openacademy.session_kanban
 msgid "Instructor not Setted"
+msgstr ""
+
+#. module: openacademy
+#: code:addons/openacademy/models/models.py:59
+#, python-format
+msgid "Invalid Duration Value"
 msgstr ""
 
 #. module: openacademy
